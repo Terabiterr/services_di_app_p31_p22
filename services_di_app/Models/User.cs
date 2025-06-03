@@ -3,8 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace services_di_app.Models
 {
-    public class User : Model
+    public class User
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         [Required(ErrorMessage = "Name is required ...")]
         [StringLength(255, MinimumLength = 2, ErrorMessage = "The name required max: 255, min: 2")]
         public string Name { get; set; } = string.Empty;

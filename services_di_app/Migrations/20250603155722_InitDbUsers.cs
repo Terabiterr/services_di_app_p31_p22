@@ -5,7 +5,7 @@
 namespace services_di_app.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDatabaseMigration : Migration
+    public partial class InitDbUsers : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

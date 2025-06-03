@@ -14,7 +14,7 @@ namespace services_di_app
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); // Use SQL Server with the default connection string  
             });
 
-            builder.Services.AddScoped<ICRUDService, UserService>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddControllers();
 
             var app = builder.Build();

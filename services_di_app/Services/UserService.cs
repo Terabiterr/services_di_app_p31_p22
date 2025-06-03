@@ -4,21 +4,18 @@ using services_di_app.Models;
 
 namespace services_di_app.Services
 {
-    public class UserService : ICRUDService
+    public class UserService : IUserService
     {
         private readonly AppDbContext _context;
         public UserService(AppDbContext context)
         {
             _context = context;
         }
-        public async Task<Model?> CreateAsync(Model? model)
+        public async Task<User?> CreateAsync(User? user)
         {
-            if (model is not User newUser)
-                throw new Exception("Error model ...");
-
-            _context.Users.Add(newUser);
+            _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            return newUser;
+            return user;
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -30,18 +27,16 @@ namespace services_di_app.Services
             return true;
         }
 
-        public async Task<IEnumerable<Model?>> GetAllAsync()
-            => await _context.Users.ToArrayAsync();
+        public async Task<IEnumerable<User?>> GetAllAsync()
+            => await _context.Users.ToListAsync();
 
-        public async Task<Model?> GetByIdAsync(int id)
+        public async Task<User?> GetByIdAsync(int id)
             => await _context.Users.FindAsync(id);
 
-        public async Task<Model?> UpdateAsync(int id, Model? model)
+        public async Task<User?> UpdateAsync(int id, User? user)
         {
-            if (model is not User user)
-                throw new Exception("Error model ...");
-            if(await _context.Users.FindAsync(id) == null)
-                throw new Exception("Not found model ...");
+            if (!_context.Users.Any(u => u.Id == id))
+                return null;
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
             return user;

@@ -11,8 +11,8 @@ using services_di_app.Data;
 namespace services_di_app.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250601172823_InitDatabaseMigration")]
-    partial class InitDatabaseMigration
+    [Migration("20250603155722_InitDbUsers")]
+    partial class InitDbUsers
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
